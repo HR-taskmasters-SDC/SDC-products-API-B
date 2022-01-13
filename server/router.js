@@ -7,10 +7,10 @@ const {
     getCart,
 } = require('./controllers.js')
 
-router.get('/products', getProducts)
-router.get('/products/:product_id', getProduct)
-router.get('/products/:product_id/styles', getStyles )
-router.get('/products/:product_id/related', getRelated)
+router.get('/', getProducts)
+router.get('/:product_id', getProduct)
+router.get('/:product_id/styles', getStyles )
+router.get('/:product_id/related', getRelated)
 router.get('/cart', getCart)
 
 module.exports = router;
