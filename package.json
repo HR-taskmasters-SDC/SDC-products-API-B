@@ -1,0 +1,28 @@
+{
+  "name": "sdc-products-api-b",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx nodemon server/index.js",
+    "seed-db": "psql -f database/database.sql  -U benpintel products_db"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HR-taskmasters-SDC/SDC-products-API-B.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HR-taskmasters-SDC/SDC-products-API-B/issues"
+  },
+  "homepage": "https://github.com/HR-taskmasters-SDC/SDC-products-API-B#readme",
+  "dependencies": {
+    "csv": "^6.0.5",
+    "csv-writer": "^1.6.0",
+    "express": "^4.17.2",
+    "pg": "^8.7.1",
+    "postgres": "^1.0.2"
+  }
+}
