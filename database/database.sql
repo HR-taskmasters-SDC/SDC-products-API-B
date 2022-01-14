@@ -1,7 +1,5 @@
--- DROP DATABASE IF EXISTS products_db;
 CREATE DATABASE products_db;
 \c products_db
-
 
 CREATE TABLE IF NOT EXISTS products(
   id SERIAL PRIMARY KEY NOT NULL,
