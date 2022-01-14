@@ -7,10 +7,10 @@ const { readProducts,
 module.exports ={
 
   getProducts: (req, res) => {
-    const { page, count } = reg.query;
-    readProducts(product_id)
+    const { page, count } = req.query;
+    readProducts(page, count)
       .then((results) => {
-        res.send(results);
+        res.send(results.rows);
       })
       .catch((err) => {
         console.error(err);
@@ -55,8 +55,8 @@ module.exports ={
   },
 
   getCart: (req, res) => {
-    const { sku_id } = req.params;
-    readCart(sku_id)
+    // const { sku_id } = req.params;
+    readCart()
       .then((results) => {
         res.send(results);
       })
