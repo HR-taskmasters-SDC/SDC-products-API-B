@@ -22,7 +22,7 @@ module.exports ={
     const { product_id } = req.params;
     readProduct(product_id)
       .then((results) => {
-        res.send(results);
+        res.send(results.rows[0]);
       })
       .catch((err) => {
         console.error(err);
@@ -46,7 +46,7 @@ module.exports ={
     const { product_id } = req.params;
     readRelated(product_id)
       .then((results) => {
-        res.send(results.rows[0]['array_agg']);
+        res.send(results.rows[0].array_agg);
       })
       .catch((err) => {
         console.error(err);
