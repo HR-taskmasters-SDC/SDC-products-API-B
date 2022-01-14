@@ -3,7 +3,7 @@ CREATE DATABASE products_db;
 \c products_db
 
 
-CREATE TABLE products(
+CREATE TABLE IF NOT EXISTS products(
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR NOT NULL,
   slogan VARCHAR NOT NULL,
@@ -11,18 +11,18 @@ CREATE TABLE products(
   category VARCHAR NOT NULL,
   default_price VARCHAR NOT NULL
 );
-CREATE TABLE related(
+CREATE TABLE IF NOT EXISTS related(
   id SERIAL PRIMARY KEY NOT NULL,
-  product_id INT REFERENCES products(id),
+  current_product_id INT REFERENCES products(id),
   related_product_id INT NOT NULL
 );
-CREATE TABLE features(
+CREATE TABLE IF NOT EXISTS features(
   id SERIAL PRIMARY KEY NOT NULL,
   product_id INT REFERENCES products(id),
   feature VARCHAR NOT NULL,
   value VARCHAR
 );
-CREATE TABLE styles(
+CREATE TABLE IF NOT EXISTS styles(
   id SERIAL PRIMARY KEY NOT NULL,
   product_id INT REFERENCES products(id),
   name VARCHAR NOT NULL,
@@ -30,24 +30,26 @@ CREATE TABLE styles(
   original_price VARCHAR NOT NULL,
   default_style BOOLEAN NOT NULL
 );
-CREATE TABLE photos(
+CREATE TABLE IF NOT EXISTS photos(
   id SERIAL PRIMARY KEY NOT NULL,
   styles_id INT REFERENCES styles(id),
   url VARCHAR NOT NULL,
   thumbnail_url VARCHAR NOT NULL
 );
-CREATE TABLE skus(
+CREATE TABLE IF NOT EXISTS skus(
   id SERIAL PRIMARY KEY NOT NULL,
   styles_id INT REFERENCES styles(id),
   size VARCHAR  NOT NULL,
   quantity INT NOT NULL
 );
-CREATE TABLE cart(
+CREATE TABLE IF NOT EXISTS cart(
   id SERIAL PRIMARY KEY NOT NULL,
   user_session INT NOT NULL,
   product_id INT REFERENCES products(id),
   active BOOLEAN NOT NULL
 );
+
+TRUNCATE TABLE products, related, features, styles, photos, skus, cart;
 
 COPY products FROM '/Users/benpintel/lax48/SDC-data/product.csv' DELIMITERS ',' CSV HEADER;
 COPY related FROM '/Users/benpintel/lax48/SDC-data/related.csv' DELIMITERS ',' CSV HEADER;
