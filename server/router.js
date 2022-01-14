@@ -10,6 +10,6 @@ router.get('/', getProducts)
 router.get('/:product_id', getProduct)
 router.get('/:product_id/styles', getStyles )
 router.get('/:product_id/related', getRelated)
-router.get('/cart', getCart)
+router.get('/', getCart)
 
 module.exports = router;
