@@ -9,11 +9,6 @@ app.use('/products', router);
 app.use('/cart', router);
 
 
-
-
-
-
-
 app.listen(PORT, (err) => {
     err ? console.log(err) : console.log(`listening on PORT ${PORT}...`);
 })

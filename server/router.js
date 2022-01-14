@@ -4,8 +4,7 @@ const {
     getProduct,
     getStyles,
     getRelated,
-    getCart,
-} = require('./controllers.js')
+    getCart } = require('./controllers.js')
 
 router.get('/', getProducts)
 router.get('/:product_id', getProduct)
