@@ -3,16 +3,17 @@ const pool = new Pool({
     host: 'localhost',
     user: 'benpintel',
     database: 'products_db',
-    passqord: '',
+    password: '',
     port: 5432,
   });
 
-  pool.query('SELECT NOW()', (err, result) => {
-    if (err) {
-      console.error('Error executing query', err)
-    } else {
-    console.log('Connected to DB')
-    } 
+ pool.connect()
+  .then(res => {
+      console.log('Connected to Database');
   })
+  .catch(err => {
+      console.error(err)
+  });
 
   module.exports = pool;
+
