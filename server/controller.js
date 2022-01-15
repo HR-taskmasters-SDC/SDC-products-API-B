@@ -4,7 +4,7 @@ const { readProducts,
   readRelated,
   readCart } = require('./models.js');
 
-module.exports ={
+const controller ={
 
   getProducts: (req, res) => {
     const { page, count } = req.query;
@@ -34,7 +34,7 @@ module.exports ={
     const { product_id } = req.params;
     readStyles(product_id)
       .then((results) => {
-        res.send(results);
+        res.send(results.rows);
       })
       .catch((err) => {
         console.error(err);
@@ -66,7 +66,9 @@ module.exports ={
       });
   },
 
-  //postCart: () => {
+  postCart: () => {
 
-  // }
+  }
 }
+
+module.exports = controller;
