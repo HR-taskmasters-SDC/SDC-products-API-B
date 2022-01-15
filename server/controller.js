@@ -4,7 +4,7 @@ const { readProducts,
   readRelated,
   readCart } = require('./models.js');
 
-const controller ={
+const controller = {
 
   getProducts: (req, res) => {
     const { page, count } = req.query;
@@ -64,11 +64,11 @@ const controller ={
         console.error(err);
         res.sendStatus(500);
       });
-  },
-
-  postCart: () => {
-
   }
-}
+
+  // postCart: () => {
+
+  // }
+};
 
 module.exports = controller;
