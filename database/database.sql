@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS cart(
   user_session INT NOT NULL,
   product_id INT REFERENCES products(id),
   active BOOLEAN NOT NULL
+  -- quantity INT 
 );
 
 TRUNCATE TABLE products, related, features, styles, photos, skus, cart;
