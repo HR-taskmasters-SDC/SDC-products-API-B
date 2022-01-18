@@ -2,7 +2,8 @@ const { readProducts,
   readProduct,
   readStyles,
   readRelated,
-  readCart } = require('./models.js');
+  readCart,
+  addToCart } = require('./models.js');
 
 const controller = {
 
@@ -21,8 +22,9 @@ const controller = {
   getProduct: (req, res) => {
     const { product_id } = req.params;
     readProduct(product_id)
-      .then((results) => {
-        res.send(results.rows[0]);
+    .then((results) => {
+      results.rows[0];
+      res.send(results.rows[0]);
       })
       .catch((err) => {
         console.error(err);
@@ -32,9 +34,13 @@ const controller = {
 
   getStyles: (req, res) => {
     const { product_id } = req.params;
+    let data = {};
+    data.product_id = product_id;
+    data.results = [];
     readStyles(product_id)
-      .then((results) => {
-        res.send(results.rows);
+      .then((results_query) => {
+        data.results = results_query.rows;
+        res.send(data);
       })
       .catch((err) => {
         console.error(err);
@@ -46,7 +52,7 @@ const controller = {
     const { product_id } = req.params;
     readRelated(product_id)
       .then((results) => {
-        res.send(results.rows[0].array_agg);
+        res.send(results.rows[0].json_agg);
       })
       .catch((err) => {
         console.error(err);
@@ -55,20 +61,29 @@ const controller = {
   },
 
   getCart: (req, res) => {
-    // const { sku_id } = req.params;
-    readCart()
+    const { user_session } = req.params;
+    readCart(user_session)
       .then((results) => {
-        res.send(results);
+        res.send(results.rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  },
+
+  postCart: (req, res) => {
+    const session_id = req.sessionID
+    const { sku_id } = req.params;
+    addToCart(session_id, sku_id)
+      .then((results) => {
+        res.send(results.rows);
       })
       .catch((err) => {
         console.error(err);
         res.sendStatus(500);
       });
   }
-
-  // postCart: () => {
-
-  // }
 };
 
 module.exports = controller;

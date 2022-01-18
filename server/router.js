@@ -7,6 +7,6 @@ router.get('/products/:product_id/styles', controller.getStyles)
 router.get('/products/:product_id/related', controller.getRelated)
 router.route('/cart')
     .get(controller.getCart)
-    //  .post(controller.postCart);
+    .post(controller.postCart);
 
 module.exports = router;
