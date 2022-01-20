@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "npx nodemon server/index.js",
-    "seed-db": "psql -f database/database.sql  -U benpintel products_db"
+    "seed-db": "psql -f database/database.sql  -U benpintel products_db",
+    "k6-gps": "k6 run tests/getProducts.js",
+    "k6-gp": "k6 run tests/getProduct.js",
+    "k6-gs": "k6 run tests/getStyles.js",
+    "k6-gr": "k6 run tests/getRelated.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +23,7 @@
   },
   "homepage": "https://github.com/HR-taskmasters-SDC/SDC-products-API-B#readme",
   "dependencies": {
+    "compression": "^1.7.4",
     "csv": "^6.0.5",
     "csv-writer": "^1.6.0",
     "express": "^4.17.2",
