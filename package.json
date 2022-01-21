@@ -9,7 +9,8 @@
     "k6-gps": "k6 run tests/getProducts.js",
     "k6-gp": "k6 run tests/getProduct.js",
     "k6-gs": "k6 run tests/getStyles.js",
-    "k6-gr": "k6 run tests/getRelated.js"
+    "k6-gr": "k6 run tests/getRelated.js",
+    "k6-gc": "k6 run tests/getCart.js"
   },
   "repository": {
     "type": "git",
