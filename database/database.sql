@@ -44,27 +44,30 @@ CREATE TABLE IF NOT EXISTS cart(
   id SERIAL PRIMARY KEY NOT NULL,
   user_session INT NOT NULL,
   product_id INT REFERENCES products(id),
-  active BOOLEAN NOT NULL
-  -- quantity INT 
+  active BOOLEAN NOT NULL,
+  count INT 
 );
 
-TRUNCATE TABLE products, related, features, styles, photos, skus, cart;
+-- TRUNCATE TABLE products, related, features, styles, photos, skus, cart;
+-- TRUNCATE TABLE cart;
 
-COPY products FROM '/Users/benpintel/lax48/SDC-data/product.csv' DELIMITERS ',' CSV HEADER;
-COPY related FROM '/Users/benpintel/lax48/SDC-data/related.csv' DELIMITERS ',' CSV HEADER;
-COPY features FROM '/Users/benpintel/lax48/SDC-data/features.csv' DELIMITERS ',' CSV HEADER;
-COPY styles FROM '/Users/benpintel/lax48/SDC-data/styles.csv' DELIMITERS ',' CSV HEADER;
-COPY photos FROM '/Users/benpintel/lax48/SDC-data/photos.csv' DELIMITERS ',' CSV HEADER;
-COPY skus FROM '/Users/benpintel/lax48/SDC-data/skus.csv' DELIMITERS ',' CSV HEADER;
+-- COPY products FROM '/Users/benpintel/lax48/SDC-data/product.csv' DELIMITERS ',' CSV HEADER;
+-- COPY related FROM '/Users/benpintel/lax48/SDC-data/related.csv' DELIMITERS ',' CSV HEADER;
+-- COPY features FROM '/Users/benpintel/lax48/SDC-data/features.csv' DELIMITERS ',' CSV HEADER;
+-- COPY styles FROM '/Users/benpintel/lax48/SDC-data/styles.csv' DELIMITERS ',' CSV HEADER;
+-- COPY photos FROM '/Users/benpintel/lax48/SDC-data/photos.csv' DELIMITERS ',' CSV HEADER;
+-- COPY skus FROM '/Users/benpintel/lax48/SDC-data/skus.csv' DELIMITERS ',' CSV HEADER;
 COPY cart FROM '/Users/benpintel/lax48/SDC-data/cart.csv' DELIMITERS ',' CSV HEADER;
 
-CREATE INDEX idx_features_productId ON features(product_id);
-CREATE INDEX idx_related_currentID ON related(current_product_id);
-CREATE INDEX idx_related_realtedID ON related(related_product_id);
-CREATE INDEX idx_photos_styles ON photos(styles_id);
-CREATE INDEX idx_skus_styles ON skus(styles_id);
-CREATE INDEX idx_styles_productId ON styles(product_id);
+-- CREATE INDEX idx_features_productId ON features(product_id);
+-- CREATE INDEX idx_related_currentID ON related(current_product_id);
+-- CREATE INDEX idx_related_realtedID ON related(related_product_id);
+-- CREATE INDEX idx_photos_styles ON photos(styles_id);
+-- CREATE INDEX idx_skus_styles ON skus(styles_id);
+-- CREATE INDEX idx_styles_productId ON styles(product_id);
+CREATE INDEX idx_cart_productId ON cart(product_id);
+CREATE INDEX idx_cart_userSession ON cart(user_session);
 
 
-UPDATE features SET value = NULL WHERE value = 'null';
-UPDATE styles SET sale_price = NULL WHERE sale_price = 'null';
+-- UPDATE features SET value = NULL WHERE value = 'null';
+-- UPDATE styles SET sale_price = NULL WHERE sale_price = 'null';
