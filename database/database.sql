@@ -57,3 +57,14 @@ COPY styles FROM '/Users/benpintel/lax48/SDC-data/styles.csv' DELIMITERS ',' CSV
 COPY photos FROM '/Users/benpintel/lax48/SDC-data/photos.csv' DELIMITERS ',' CSV HEADER;
 COPY skus FROM '/Users/benpintel/lax48/SDC-data/skus.csv' DELIMITERS ',' CSV HEADER;
 COPY cart FROM '/Users/benpintel/lax48/SDC-data/cart.csv' DELIMITERS ',' CSV HEADER;
+
+CREATE INDEX idx_features_productId ON features(product_id);
+CREATE INDEX idx_related_currentID ON related(current_product_id);
+CREATE INDEX idx_related_realtedID ON related(related_product_id);
+CREATE INDEX idx_photos_styles ON photos(styles_id);
+CREATE INDEX idx_skus_styles ON skus(styles_id);
+CREATE INDEX idx_styles_productId ON styles(product_id);
+
+
+UPDATE features SET value = NULL WHERE value = 'null';
+UPDATE styles SET sale_price = NULL WHERE sale_price = 'null';
