@@ -35,14 +35,15 @@ module.exports ={
     },
 
     readCart: (user_session) => {
-        const queryStr = `SELECT product_id AS sku_id
+        const queryStr = `SELECT product_id AS sku_id, count
                                 FROM cart WHERE user_session = $1 AND active = true`;
         return pool.query(queryStr, [user_session]);
     },
 
 
-    addToCart: (session_id, sku_id) => {
-        const queryStr = `INSERT INTO cart (user_session, product_id, active) VALUES ($1, $2, true)`;
-        return pool.query(queryStr, [session_id, sku_id]);
+    addToCart: (user_session, sku_id) => {
+        const queryStr = `INSERT INTO cart (user_session, product_id, active, count) 
+                                VALUES ($1, $2, true, 1) ON CONFLICT DO NOTHING`;
+        return pool.query(queryStr, [user_session, sku_id]);
     },
 }

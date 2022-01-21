@@ -61,7 +61,7 @@ const controller = {
   },
 
   getCart: (req, res) => {
-    const { user_session } = req.params;
+    const { user_session } = req.query;
     readCart(user_session)
       .then((results) => {
         res.send(results.rows);
@@ -73,9 +73,8 @@ const controller = {
   },
 
   postCart: (req, res) => {
-    const session_id = req.sessionID
-    const { sku_id } = req.params;
-    addToCart(session_id, sku_id)
+    const { user_session, sku_id } = req.body
+    addToCart(user_session, sku_id)
       .then((results) => {
         res.send(results.rows);
       })
